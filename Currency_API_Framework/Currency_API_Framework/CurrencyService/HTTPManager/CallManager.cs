@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace Currency_API_Framework.CurrencyService
 {
-    class CallManager
+    public class CallManager
     {
     }
 }
