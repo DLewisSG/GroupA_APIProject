@@ -58,6 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Tests\app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Currency_API_Framework\Currency_API_Framework.csproj">
+      <Project>{cc74ec09-13ef-41aa-b756-69a18c28cbc2}</Project>
+      <Name>Currency_API_Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Currency_API_Framework\Currency_API_Framework.csproj">
