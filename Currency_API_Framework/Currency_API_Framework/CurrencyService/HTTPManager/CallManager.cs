@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using RestSharp;
 
+
+
 namespace Currency_API_Framework.CurrencyService
 {
     public class CallManager
@@ -9,7 +11,9 @@ namespace Currency_API_Framework.CurrencyService
         //
         // Restsharp object which handles comunitcation wiith the API
         readonly IRestClient _client;
+
         public IRestResponse Response;
+
         public CallManager()
         {
             _client = new RestClient(AppConfigReader.BaseUrl);
@@ -23,9 +27,9 @@ namespace Currency_API_Framework.CurrencyService
         {
             var request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
-            request.Resource = $"coins/{coins.ToLower().Replace(" ", "")}";
-            var response = await _client.ExecuteAsync(request);
-            return response.Content;
+            request.Resource = $"v3/simple/price?ids={cryptoCurrency.ToLower()}&vs_currencies={currency.ToLower()}";
+            Response = await _client.ExecuteAsync(request);
+            return Response.Content;
         }
     }
 }

@@ -19,6 +19,13 @@ namespace CurrencyTests.Tests
             await _currencyService.MakeRequestAsync("bitcoin", "gbp");
         }
 
+        [Test]
+        public void StatusIs200()
+        {
+            //restResponse.StatusCode
+
+            Assert.That((int)_currencyService.CallManager.Response.StatusCode, Is.EqualTo(200));
+        }
 
         [Test]
         public void CorrectPriceOfBitcoinPoundsIsReturned()
@@ -66,38 +73,4 @@ namespace CurrencyTests.Tests
         }
     }
 
-    public class MadeUpCryptoTest
-    {
-        CurrencyService _currencyService;
-
-        [OneTimeSetUp]
-        public async Task OneTimeSetUp()
-        {
-            _currencyService = new CurrencyService();
-            await _currencyService.MakeRequestAsync("abcdefg", "pln");
-        }
-
-        [Test]
-        public void MadeUpCrypto_ThrowsException()
-        {
-            var result = float.Parse(_currencyService.ResponseContent["abcdefg"]["pln"].ToString());
-            Assert.That(result, Throws.ArgumentException);
-            await _currencyService.MakeRequestAsync("usd");
-        }
-
-        [Test]
-        public void StatusIs200()
-        {
-            //restResponse.StatusCode
-            
-            Assert.That((int)_currencyService.CallManager.Response.StatusCode, Is.EqualTo(200));
-        }
-
-        [Test]
-        public void CorrectPriceOfCurrencyIsReturned()
-        {
-            var result = Int32.Parse(_currencyService.ResponseContent["bitcoin"]["usd"].ToString());
-            Assert.That(result, Is.InRange(10000, 80000));
-        }
-    }
 }
