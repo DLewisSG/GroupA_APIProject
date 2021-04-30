@@ -19,11 +19,11 @@ namespace Currency_API_Framework.CurrencyService
         /// </summary>
         /// <param name="coins"></param>
         /// <returns>The response content</returns>
-        public async Task<string> MakeCurrencyRequest(string postcode)
+        public async Task<string> MakeCurrencyRequest(string cryptoCurrency, string currency)
         {
             var request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
-            request.Resource = $"coins/{coins.ToLower().Replace(" ", "")}";
+            request.Resource = $"v3/simple/price?ids={cryptoCurrency.ToLower()}&vs_currencies={currency.ToLower()}";
             var response = await _client.ExecuteAsync(request);
             return response.Content;
         }

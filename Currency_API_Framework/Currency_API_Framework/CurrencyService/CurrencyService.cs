@@ -17,6 +17,7 @@ namespace Currency_API_Framework.CurrencyService
         //currency used in this API Request
         public string CurrencySelected { get; set; }
         public string CurrencyResponse { get; set; }
+        public string CryptoCurrencySelected { get; private set; }
         #endregion
 
         //constructor- create Restclient object
@@ -26,17 +27,16 @@ namespace Currency_API_Framework.CurrencyService
             CurrencyDTO = new CurrencyDTO();
         }
 
-        public async Task MakeRequestAsync(string currency)
+        public async Task MakeRequestAsync(string cryptoCurrency, string currency)
         {
+            CryptoCurrencySelected = cryptoCurrency;
+
             CurrencySelected = currency;
             //Make request
-            CurrencyResponse = await CallManager.MakeCurrencyRequest(currency);
+            CurrencyResponse = await CallManager.MakeCurrencyRequest(cryptoCurrency, currency);
 
             //parse json into a JObject
             ResponseContent = JObject.Parse(CurrencyResponse);
         }
     }
-
-    
-
 }
