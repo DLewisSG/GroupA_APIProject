@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using Currency_API_Framework;
-using Newtonsoft.Json.Serialization;
-
+﻿using NUnit.Framework;
 using Currency_API_Framework.CurrencyService;
 using NUnit.Framework.Internal;
 
