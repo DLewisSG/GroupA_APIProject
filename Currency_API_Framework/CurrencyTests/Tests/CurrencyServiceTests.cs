@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using Currency_API_Framework.CurrencyService;
+using RestSharp;
 using System;
 
 namespace CurrencyTests.Tests
@@ -19,7 +20,9 @@ namespace CurrencyTests.Tests
         [Test]
         public void StatusIs200()
         {
-            Assert.That(_currencyService.ResponseContent["status"].ToString(), Is.EqualTo("200"));
+            //restResponse.StatusCode
+            
+            Assert.That((int)_currencyService.CallManager.Response.StatusCode, Is.EqualTo(200));
         }
 
         [Test]
