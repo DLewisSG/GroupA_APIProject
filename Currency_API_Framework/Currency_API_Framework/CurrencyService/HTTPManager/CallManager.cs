@@ -23,7 +23,7 @@ namespace Currency_API_Framework.CurrencyService
         {
             var request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
-            request.Resource = $"coins/{currency.ToLower().Replace(" ", "")}";
+            request.Resource = $"v3/simple/price?ids=bitcoin&vs_currencies={currency.ToLower()}";
             var response = await _client.ExecuteAsync(request);
             return response.Content;
         }
